@@ -1,43 +1,52 @@
-public class Dado implements Ilanzable{
+public class Dado implements Ilanzable {
 
+    private final int NUM_MIN_CARA = 4;
     private int numCaras;
-    private int numMinCara;
-    private int numMaxCara;
+    private int numMinPuntosCara;
 
-    public Dado(int numCaras, int numMinCara, int numMaxCara) throws ErrorJuegoException {
+    public Dado(int numCaras, int numMinPuntosCara) throws ErrorJuegoException {
         setNumCaras(numCaras);
-        this.numMinCara = numMinCara;
-        this.numMaxCara = numMaxCara;
+        setNumMinCara(numMinPuntosCara);
+        getMax();
     }
 
     public void setNumCaras(int numCaras) throws ErrorJuegoException {
-        if (numCaras != 4 && numCaras != 12 && numCaras != 6 ){
-            throw new ErrorJuegoException("No puede ser un número de caras distinto a ");
+        if (numCaras < NUM_MIN_CARA) {
+            throw new ErrorJuegoException("No puede ser un número de caras menor a " + NUM_MIN_CARA);
         }
         this.numCaras = numCaras;
     }
 
-    public void setNumMinCara(int numMinCara) {
-
-        this.numMinCara = numMinCara;
+    public void setNumMinCara(int numMinCara) throws ErrorJuegoException {
+        if (numMinCara < 0) {
+            throw new ErrorJuegoException("No puede ser un número ");
+        }
+        this.numMinPuntosCara = numMinCara;
     }
 
-    public void setNumMaxCara(int numMaxCara) {
-        this.numMaxCara = numMaxCara;
+    public int getNumCaras() {
+        return numCaras;
     }
 
-    @Override
-    public void lanzar() {
-
+    public int getNumMinCara() {
+        return numMinPuntosCara;
     }
 
     @Override
     public int getMin() {
-        return 0;
+
+        return getNumMinCara();
     }
 
     @Override
     public int getMax() {
-        return 0;
+
+        return (getMin() + getNumCaras() - 1);
+    }
+
+    @Override
+    public int lanzar() {
+
+        return (int) (Math.random() * (getMax() - getMin() + 1)) + getMin();
     }
 }
