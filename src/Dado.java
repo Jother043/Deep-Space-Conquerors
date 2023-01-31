@@ -10,14 +10,14 @@ public class Dado implements Ilanzable {
         getMax();
     }
 
-    public void setNumCaras(int numCaras) throws ErrorJuegoException {
+    private void setNumCaras(int numCaras) throws ErrorJuegoException {
         if (numCaras < NUM_MIN_CARA) {
             throw new ErrorJuegoException("No puede ser un número de caras menor a " + NUM_MIN_CARA);
         }
         this.numCaras = numCaras;
     }
 
-    public void setNumMinCara(int numMinCara) throws ErrorJuegoException {
+    private void setNumMinCara(int numMinCara) throws ErrorJuegoException {
         if (numMinCara < 0) {
             throw new ErrorJuegoException("No puede ser un número ");
         }

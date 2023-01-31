@@ -1,22 +1,19 @@
-public class CartaNaves extends Carta implements IAtacable, IAtacador {
+public abstract class CartaNaves extends Carta implements IAtacable{
 
-    public enum Tnaves {
-        TRANSPORTE(4), CARGA(4), ATAQUE(7);
-        private int puntosDefensa;
+    public int puntosDefensa;
+    public int unidadesOro;
 
-        Tnaves(int puntosDefensa) {
-            this.puntosDefensa = puntosDefensa;
-        }
-
-        public int getPuntosDefensa() {
-            return puntosDefensa;
-        }
-    }
-    private int unidadesOro;
-
-    public CartaNaves(String nombreCarta, double precio, int unidadesOro) {
+    public CartaNaves(String nombreCarta, int precio, int puntosDefensa, int unidadesOro) {
         super(nombreCarta, precio);
+        this.puntosDefensa = puntosDefensa;
         this.unidadesOro = unidadesOro;
+    }
+
+    public void setPuntosDefensa(int puntosDefensa) throws ErrorJuegoException {
+        if(puntosDefensa < 4){
+            throw new ErrorJuegoException("No se puede inicializar a cero los puntos de defensa");
+        }
+        this.puntosDefensa = puntosDefensa;
     }
 
     @Override
@@ -24,8 +21,4 @@ public class CartaNaves extends Carta implements IAtacable, IAtacador {
 
     }
 
-    @Override
-    public void atacar() {
-
-    }
 }

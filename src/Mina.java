@@ -5,7 +5,7 @@ public class Mina extends Carta {
     }
     private int cantidadMinadaPorTurno;
 
-    public Mina(String nombreCarta, double precio, int cantidadMinadaPorTurno) {
+    public Mina(String nombreCarta, int precio, int cantidadMinadaPorTurno) {
         super(nombreCarta, precio);
         this.cantidadMinadaPorTurno = cantidadMinadaPorTurno;
     }
